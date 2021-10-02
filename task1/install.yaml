@@ -10,6 +10,6 @@
   - name: start firewalld service
     service: name=firewalld state=started
   - name: open ports
-    firewalld: ports=80/tcp state=enabled
+    firewalld: port=80/tcp state=enable
   - name: start httpd service
     service: name=httpd state=started
