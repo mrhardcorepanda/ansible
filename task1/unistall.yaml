@@ -7,6 +7,6 @@
   - name: close ports
     firewalld: state=disabled port=80/tcp
   handlers:
-  - name: remove file
+  - name: remove index file
     file: state=absent path=/var/www/html/index.html
     listen: delete_index
