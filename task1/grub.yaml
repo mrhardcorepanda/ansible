@@ -1,13 +1,11 @@
 ---
 - hosts: all
-  vars:
-    grub:
-      - "net.ifnames=0"
-      - "biosdevname=0"
   tasks:
   - name: add grub stuff
     lineinfile:
       dest: /etc/default/grub
       line: "{{ item }}"
-    loop: {{ grub }}
+    loop:
+      - "net.ifnames=0"
+      - "biosdevname=0"
       
