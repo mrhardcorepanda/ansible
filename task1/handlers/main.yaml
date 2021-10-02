@@ -1,0 +1,7 @@
+---
+- name: copy inex.html file
+    copy: src=index.html dest=/var/www/html/index.html owner=apache
+    listen: add_index
+- name: remove file
+    file: state=absent path=/var/www/html/index.html
+    listen: delete_index
