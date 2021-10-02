@@ -14,5 +14,5 @@
     service: name=httpd state=started
   handlers:
   - name: remove file
-    file: state=absent path=/var/www/html/index.html
-    listen: delete_index
+    copy: path=/var/www/html/index.html src=index.html
+    listen: add_index
