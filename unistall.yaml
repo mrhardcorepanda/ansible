@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+  - name: unistall httpd
+    yum: name=httpd state=absent
+  - name: remove file
+    file: state=absent path=/var/www/html/index.html
+  - name: close ports
+    firewalld: state=disabled port=80/tcp
