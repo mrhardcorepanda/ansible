@@ -8,4 +8,7 @@
     loop:
       - "net.ifnames=0"
       - "biosdevname=0"
+  - name: run grub2 thingy
+    shell:
+      cmd: grub2-mkconfig
       
