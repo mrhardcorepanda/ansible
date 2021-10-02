@@ -9,6 +9,7 @@
       - "net.ifnames=0"
       - "biosdevname=0"
   - name: run grub2 thingy
+    ignore_errors: yes
     shell:
       cmd: grub2-mkconfig
       
