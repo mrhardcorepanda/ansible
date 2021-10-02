@@ -1,8 +1,9 @@
 ---
 - hosts: all
-  grub:
-    - "net.ifnames=0"
-    - "biosdevname=0"
+  vars:
+    grub:
+      - "net.ifnames=0"
+      - "biosdevname=0"
   tasks:
   - name: add grub stuff
     lineinfile:
