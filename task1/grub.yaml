@@ -7,6 +7,6 @@
   - name: add grub stuff
     lineinfile:
       dest: /etc/default/grub
-      line: {{ item }}
-      loop: {{ grub }}
+      line: "{{ item }}"
+    loop: {{ grub }}
       
