@@ -7,5 +7,9 @@
     copy: src=index.html dest=/var/www/html/index.html owner=apache
   - name: install firewalld
     yum: name=firewalld state=latest
+  - name: start firewalld service
+    service: name=firewalld state=started
   - name: open ports
     firewalld: ports=80/tcp state=enabled
+  - name: start httpd service
+    service: name=httpd state=started
