@@ -3,4 +3,9 @@
   tasks:
   - name: install httpd
     yum: name=httpd state=latest
-  - name: 
+  - name: copy inex.html file
+    copy: src=index.html dest=/var/www/html/index.html owner=apache
+  - name: install firewalld
+    yum: name=firewalld state=latest
+  - name: open ports
+    firewalld: ports=80/tcp state=enabled
