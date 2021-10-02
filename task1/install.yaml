@@ -12,3 +12,7 @@
     firewalld: port=80/tcp state=enabled
   - name: start httpd service
     service: name=httpd state=started
+  handlers:
+  - name: remove file
+    file: state=absent path=/var/www/html/index.html
+    listen: delete_index
