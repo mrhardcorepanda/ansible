@@ -11,4 +11,3 @@
       name: "{{ username }}"
       password: "{{ password }}"
     loop: vars_files
-      
