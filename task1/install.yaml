@@ -16,4 +16,8 @@
   - name: add index file
     copy: dest=/var/www/html/index.html src=index.html
     listen: add_index
+    notify: restart_httpd
+  - name: restart httpd
+    service: name=httpd tsate=restarted
+    listen: restart_httpd
   
