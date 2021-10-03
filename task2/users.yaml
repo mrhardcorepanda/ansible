@@ -8,4 +8,5 @@
       comment: "{{ item.key }}@example.com"
       name: "{{ item.key }}"
       password: "{{ item.value | password_hash('sha512') }}"
-    with_dict: "{{ passwords }}""
+      update_password: on_create
+    with_dict: "{{ passwords }}"
