@@ -3,18 +3,16 @@
   tasks:
   - name: install httpd
     yum: name=httpd state=latest
-    notify: add_index
   - name: install firewalld
     yum: name=firewalld state=latest
   - name: start firewalld service
     service: name=firewalld state=started
   - name: open ports
     firewalld: port=80/tcp state=enabled
-  handlers:
   - name: add index file
     copy: dest=/var/www/html/index.html src=index.html
-    listen: add_index
     notify: restart_httpd
+  handlers:
   - name: restart httpd
     service: name=httpd state=restarted
     listen: restart_httpd
