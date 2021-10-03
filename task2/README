@@ -1,0 +1,2 @@
+command to run task:
+ansible-playbook create_users.yaml --vault-password-file=vault-pass
