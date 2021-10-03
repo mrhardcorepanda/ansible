@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars_files:
+    - Alice.yaml
+    - Carol.yaml
+    - Bob.yaml
+  tasks:
+  - name: setting up users
+    user:
+      comment: "{{ username }}@example.com"
+      name: "{{ username }}"
+      password: "{{ password }}"
+    loop: vars_files
+      
