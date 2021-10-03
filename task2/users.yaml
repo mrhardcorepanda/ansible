@@ -1,13 +1,11 @@
 ---
 - hosts: all
   vars_files:
-    - Alice.yaml
-    - Carol.yaml
-    - Bob.yaml
+    - secrets.yaml
   tasks:
   - name: setting up users
     user:
-      comment: "{{ username }}@example.com"
-      name: "{{ username }}"
-      password: "{{ password | password_hash('sha512') }}"
-    loop: vars_files
+      comment: "{{ item.key }}@example.com"
+      name: "{{ item.key }}"
+      password: "{{ item.value | password_hash('sha512') }}"
+    with_dict: "{{ passwords }}""
