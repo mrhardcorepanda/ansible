@@ -1,0 +1,6 @@
+---
+- name: using roles
+  hosts: all
+  roles:
+    - role: httpd
+      when: ansible_os_family == "RedHat"

@@ -1,0 +1,37 @@
+---
+- name: create dirs
+  file:
+    path: /var/ftp/pub
+    mode: '777'
+    owner: ftp
+    state: directory
+- name: create upload dir
+  file:
+    path: /var/ftp/pub/upload
+    state: directory
+    mode: '0777'
+    owner: ftp
+    recurse: yes
+    setype: public_content_rw_t
+- name: install vsftpd
+  yum: name=vsftpd state=latest
+- name: install firewalld
+  yum: name=firewalld state=latest
+- name: iptables stuff
+  lineinfile:
+    path: /etc/sysconfig/iptables-config
+    line: 'IPTABLES_MODULES="ip_conntrack_ftp"'
+    state: present
+    regexp: IPTABLES_MODULES
+- name: start firewalld
+  service: name=firewalld state=started
+- name: open more ports
+  firewalld: service=ftp state=enabled
+- name: selinux stuff
+  seboolean: name=allow_ftpd_anon_write state=yes
+- name: uppload conffile
+  template:
+    dest: /etc/vsftpd/vsftpd.conf
+    src: vsftpd.conf.j2
+- name: start vsftpd
+  service: name=vsftpd state=restarted
